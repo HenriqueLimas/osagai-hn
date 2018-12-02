@@ -1,0 +1,27 @@
+.links {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  margin: 0;
+  list-style-type: none;
+  background: #5f4b44;
+}
+
+.logo img {
+  max-width: 2em;
+}
+
+.link {
+  display: block;
+  padding: 0.1em 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.item {
+  margin-left: 0.7em;
+}
+
+.item:last-child {
+  margin-left: auto;
+}
