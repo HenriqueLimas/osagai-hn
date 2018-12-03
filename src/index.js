@@ -1,6 +1,7 @@
 import { define } from "osagai";
 import "./header/hn-header.js";
 import "./router/hn-router.js";
+import "./list/hn-list.js";
 
 import "./styles.css";
 
@@ -30,12 +31,15 @@ function App({ query, update }) {
   return ({ route = "/top" } = {}) => `<div>
       <hn-header></hn-header>
       <hn-router></hn-router>
-      ${route === "/top" || route === "/" ? "top" : ""}
-      ${route === "/new" ? "new" : ""}
-      ${route === "/show" ? "show" : ""}
-      ${route === "/ask" ? "ask" : ""}
-      ${route === "/jobs" ? "jobs" : ""}
-      ${route === "/about" ? "about" : ""}
+      ${
+        route === "/top" || route === "/"
+          ? `<hn-list type="news"></hn-list>`
+          : ""
+      }
+      ${route === "/new" ? `<hn-list type="newest"></hn-list>` : ""}
+      ${route === "/show" ? `<hn-list type="show"></hn-list>` : ""}
+      ${route === "/ask" ? `<hn-list type="ask"></hn-list>` : ""}
+      ${route === "/jobs" ? `<hn-list type="jobs"></hn-list>` : ""}
       </div>
     </div>`;
 }
