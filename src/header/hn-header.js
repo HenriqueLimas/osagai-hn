@@ -3,10 +3,12 @@ import { define } from "osagai";
 import styles from "./hn-header.css";
 import Logo from "./logo.png";
 
+const html = String.raw;
+
 function Item({ href, text }) {
-  return `
-    <li class=${styles.item}>
-      <a class=${styles.link} href="${href}" aria-label="${text}">${text}</a>
+  return html`
+    <li class="${styles.item}">
+      <a class="${styles.link}" href="${href}" aria-label="${text}">${text}</a>
     </li>
   `;
 }
@@ -32,18 +34,14 @@ function Header() {
     {
       href: "/jobs",
       text: "jobs"
-    },
-    {
-      href: "/about",
-      text: "about"
     }
   ];
-  return () => `
+  return () => html`
     <nav class="${styles.header}">
       <ol class="${styles.links}">
         <li class="${styles.logo}">
           <a href="/" aria-label="Home">
-            <img src="${Logo}" alt="Osagai Hacker News logo">
+            <img src="${Logo}" alt="Osagai Hacker News logo" />
           </a>
         </li>
 

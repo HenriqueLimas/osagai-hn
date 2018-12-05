@@ -1,7 +1,5 @@
 import { define } from "osagai";
 import "./header/hn-header.js";
-import "./router/hn-router.js";
-import "./list/hn-list.js";
 
 import "./styles.css";
 
@@ -19,13 +17,20 @@ if ("serviceWorker" in navigator) {
 }
 
 function App({ query, update }) {
-  query("hn-router").then(router => {
-    router.addListener(route => {
-      update((state = {}) => {
-        state.route = route;
-        return state;
-      });
-    });
+  requestAnimationFrame(() => {
+    import(/* webpackChunkName: "list" */ "./list/hn-list.js");
+    import(/* webpackChunkName: "router" */ "./router/hn-router.js").then(
+      () => {
+        query("hn-router").then(router => {
+          router.addListener(route => {
+            update((state = {}) => {
+              state.route = route;
+              return state;
+            });
+          });
+        });
+      }
+    );
   });
 
   return ({ route = "/top" } = {}) => `<div>

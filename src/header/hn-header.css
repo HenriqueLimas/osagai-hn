@@ -21,7 +21,3 @@
 .item {
   margin-left: 0.7em;
 }
-
-.item:last-child {
-  margin-left: auto;
-}
