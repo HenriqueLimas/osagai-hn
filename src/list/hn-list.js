@@ -26,10 +26,10 @@ function List({ element, update }) {
                 html`
                   <li>
                     <hn-list-item
-                      id="${item.id}"
+                      item-id="${item.id}"
                       index="${index + 1}"
                       url="${item.url}"
-                      title="${item.title}"
+                      title="${item.title.replace(/"/g, "&quot;")}"
                       points="${item.points}"
                       user="${item.user}"
                       time="${item.time}"

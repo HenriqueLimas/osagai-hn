@@ -11,7 +11,7 @@
   "author": "Henrique Limas <hlimas@ebay.com>",
   "license": "ISC",
   "dependencies": {
-    "osagai": "0.0.9"
+    "osagai": "^0.0.10"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.0",
