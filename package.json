@@ -4,10 +4,11 @@
   "description": "",
   "private": true,
   "scripts": {
+    "cp:now": "cp now.json dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "deploy": "npm run build && now dist"
+    "deploy": "npm run build && npm run cp:now && now dist"
   },
   "author": "Henrique Limas <hlimas@ebay.com>",
   "license": "ISC",

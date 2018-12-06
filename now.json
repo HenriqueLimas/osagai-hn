@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "builds": [{ "src": "*", "use": "@now/static" }],
+  "regions": ["sfo1", "bru"]
+}
