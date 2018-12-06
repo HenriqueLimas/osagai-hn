@@ -7,16 +7,23 @@ import "./hn-list-item.js";
 const html = String.raw;
 
 function List({ element, update }) {
-  onAttributeChanged(element, ({ current }) => {
-    getList({ type: current }).then(data => {
+  onAttributeChanged(element, ({ name, current }) => {
+    const query = {
+      type: element.getAttribute("type"),
+      page: element.getAttribute("page")
+    };
+
+    query[name] = current;
+    getList(query).then(data => {
       update((state = {}) => {
+        state.page = +query.page;
         state.items = data;
         return state;
       });
     });
   });
 
-  return ({ items = [] } = {}) => html`
+  return ({ items = [], page } = {}) => html`
     <div>
       <ol class="${styles.list}">
         ${
@@ -27,7 +34,7 @@ function List({ element, update }) {
                   <li>
                     <hn-list-item
                       item-id="${item.id}"
-                      index="${index + 1}"
+                      index="${index + 1 + (page - 1) * 30}"
                       url="${item.url}"
                       title="${item.title.replace(/"/g, "&quot;")}"
                       points="${item.points}"
@@ -45,4 +52,4 @@ function List({ element, update }) {
   `;
 }
 
-define("hn-list", List, { observedAttributes: ["type"] });
+define("hn-list", List, { observedAttributes: ["type", "page"] });

@@ -16,9 +16,12 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+const html = String.raw;
+
 function App({ query, update }) {
   requestAnimationFrame(() => {
     import(/* webpackChunkName: "list" */ "./list/hn-list.js");
+    import(/* webpackChunkName: "pagination" */ "./pagination/hn-pagination.js");
     import(/* webpackChunkName: "router" */ "./router/hn-router.js").then(
       () => {
         query("hn-router").then(router => {
@@ -33,20 +36,83 @@ function App({ query, update }) {
     );
   });
 
-  return ({ route = "/top" } = {}) => `<div>
+  const extractPage = route => {
+    const matches = route.match(/\/(\d*)$/) || [];
+    return matches[1] || "1";
+  };
+  const matchPage = (route, toMatch) => {
+    return route.match(toMatch);
+  };
+
+  return ({ route = "/top" } = {}) => {
+    const page = extractPage(route);
+
+    return html`<div>
       <hn-header></hn-header>
       <hn-router></hn-router>
       ${
-        route === "/top" || route === "/"
-          ? `<hn-list type="news"></hn-list>`
+        matchPage(route, "/top") || route === "/"
+          ? html`
+              <hn-pagination
+                type="top"
+                page="${page}"
+                max-pages="10"
+              ></hn-pagination>
+              <hn-list type="news" page="${page}"></hn-list>
+            `
           : ""
       }
-      ${route === "/new" ? `<hn-list type="newest"></hn-list>` : ""}
-      ${route === "/show" ? `<hn-list type="show"></hn-list>` : ""}
-      ${route === "/ask" ? `<hn-list type="ask"></hn-list>` : ""}
-      ${route === "/jobs" ? `<hn-list type="jobs"></hn-list>` : ""}
+      ${
+        matchPage(route, "/new")
+          ? html`
+              <hn-pagination
+                type="new"
+                page="${page}"
+                max-pages="12"
+              ></hn-pagination>
+              <hn-list type="newest" page="${page}"></hn-list>
+            `
+          : ""
+      }
+      ${
+        matchPage(route, "/show")
+          ? html`
+              <hn-pagination
+                type="show"
+                page="${page}"
+                max-pages="2"
+              ></hn-pagination>
+              <hn-list type="show" page="${page}"></hn-list>
+            `
+          : ""
+      }
+      ${
+        matchPage(route, "/ask")
+          ? html`
+              <hn-pagination
+                type="ask"
+                page="${page}"
+                max-pages="2"
+              ></hn-pagination>
+              <hn-list type="ask" page="${page}"></hn-list>
+            `
+          : ""
+      }
+      ${
+        matchPage(route, "/jobs")
+          ? html`
+              <hn-pagination
+                type="jobs"
+                page="${page}"
+                max-pages="1"
+              ></hn-pagination>
+              <hn-list type="jobs" page="${page}"></hn-list>
+            `
+          : ""
+      }
       </div>
     </div>`;
+  };
 }
 
 define("hn-app", App);
