@@ -13,7 +13,7 @@ function Item({ href, text }) {
   `;
 }
 
-function Header() {
+function Header({ query }) {
   const menus = [
     {
       href: "/top",
@@ -36,12 +36,16 @@ function Header() {
       text: "jobs"
     }
   ];
+
+  query("img").then(img => {
+    img.src = img.dataset.src;
+  });
   return () => html`
     <nav class="${styles.header}">
       <ol class="${styles.links}">
         <li class="${styles.logo}">
           <a href="/" aria-label="Home">
-            <img src="${Logo}" alt="Osagai Hacker News logo" />
+            <img data-src="${Logo}" alt="Osagai Hacker News logo" />
           </a>
         </li>
 
