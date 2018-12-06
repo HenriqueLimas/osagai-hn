@@ -13,7 +13,7 @@ function Item({ href, text }) {
   `;
 }
 
-function Header({ query }) {
+function Header({ query, element }) {
   const menus = [
     {
       href: "/top",
@@ -38,8 +38,11 @@ function Header({ query }) {
   ];
 
   query("img").then(img => {
-    img.src = img.dataset.src;
+    if (element.isConnected) {
+      img.src = img.dataset.src;
+    }
   });
+
   return () => html`
     <nav class="${styles.header}">
       <ol class="${styles.links}">
