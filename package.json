@@ -13,10 +13,12 @@
   "author": "Henrique Limas <hlimas@ebay.com>",
   "license": "ISC",
   "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.1",
     "osagai": "^0.0.10"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "express": "^4.16.4",
     "file-loader": "^2.0.0",

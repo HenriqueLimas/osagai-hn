@@ -2,23 +2,20 @@ import { define } from "osagai";
 import "./header/hn-header.js";
 import "./list/hn-list.js";
 import "./pagination/hn-pagination.js";
+import "./router/hn-router.js";
 
 import "./styles.css";
 
 function App({ query, update }) {
   requestAnimationFrame(() => {
-    import(/* webpackChunkName: "router" */ "./router/hn-router.js").then(
-      () => {
-        query("hn-router").then(router => {
-          router.addListener(route => {
-            update((state = {}) => {
-              state.route = route;
-              return state;
-            });
-          });
+    query("hn-router").then(router => {
+      router.addListener(route => {
+        update((state = {}) => {
+          state.route = route;
+          return state;
         });
-      }
-    );
+      });
+    });
   });
 
   const extractPage = route => {
