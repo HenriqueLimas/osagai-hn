@@ -3,8 +3,6 @@ import { onAttributeChanged } from "osagai/lifecycles";
 
 import styles from "./hn-pagination.css";
 
-const html = String.raw;
-
 function Pagination({ element, update }) {
   onAttributeChanged(element, ({ name, current }) => {
     update((currentState = {}) => {
@@ -17,7 +15,7 @@ function Pagination({ element, update }) {
     page = 1,
     maxPages = +element.getAttribute("max-pages"),
     type = element.getAttribute("type")
-  } = {}) => html`
+  } = {}) => `
     <p class="${styles.pagination}">
       <a
         href="/${type}/${page - 1}"

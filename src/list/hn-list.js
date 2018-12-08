@@ -4,8 +4,6 @@ import { getList } from "./api";
 import styles from "./hn-list.css";
 import "./hn-list-item.js";
 
-const html = String.raw;
-
 function List({ element, update }) {
   onAttributeChanged(element, ({ name, current }) => {
     const query = {
@@ -23,14 +21,13 @@ function List({ element, update }) {
     });
   });
 
-  return ({ items = [], page } = {}) => html`
+  return ({ items = [], page } = {}) => `
     <div>
       <ol class="${styles.list}">
-        ${
-          items
-            .map(
-              (item, index) =>
-                html`
+        ${items
+          .map(
+            (item, index) =>
+              `
                   <li>
                     <hn-list-item
                       item-id="${item.id}"
@@ -44,9 +41,8 @@ function List({ element, update }) {
                     ></hn-list-item>
                   </li>
                 `
-            )
-            .join("")
-        }
+          )
+          .join("")}
       </ol>
     </div>
   `;

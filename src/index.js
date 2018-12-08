@@ -1,27 +1,12 @@
 import { define } from "osagai";
 import "./header/hn-header.js";
+import "./list/hn-list.js";
+import "./pagination/hn-pagination.js";
 
 import "./styles.css";
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then(registration => {
-        console.log("SW registered: ", registration);
-      })
-      .catch(registrationError => {
-        console.log("SW registration failed: ", registrationError);
-      });
-  });
-}
-
-const html = String.raw;
-
 function App({ query, update }) {
   requestAnimationFrame(() => {
-    import(/* webpackChunkName: "list" */ "./list/hn-list.js");
-    import(/* webpackChunkName: "pagination" */ "./pagination/hn-pagination.js");
     import(/* webpackChunkName: "router" */ "./router/hn-router.js").then(
       () => {
         query("hn-router").then(router => {
@@ -47,12 +32,12 @@ function App({ query, update }) {
   return ({ route = "/top" } = {}) => {
     const page = extractPage(route);
 
-    return html`<div>
+    return `<div>
       <hn-header></hn-header>
       <hn-router></hn-router>
       ${
         matchPage(route, "/top") || route === "/"
-          ? html`
+          ? `
               <hn-pagination
                 type="top"
                 page="${page}"
@@ -64,7 +49,7 @@ function App({ query, update }) {
       }
       ${
         matchPage(route, "/new")
-          ? html`
+          ? `
               <hn-pagination
                 type="new"
                 page="${page}"
@@ -76,7 +61,7 @@ function App({ query, update }) {
       }
       ${
         matchPage(route, "/show")
-          ? html`
+          ? `
               <hn-pagination
                 type="show"
                 page="${page}"
@@ -88,7 +73,7 @@ function App({ query, update }) {
       }
       ${
         matchPage(route, "/ask")
-          ? html`
+          ? `
               <hn-pagination
                 type="ask"
                 page="${page}"
@@ -100,7 +85,7 @@ function App({ query, update }) {
       }
       ${
         matchPage(route, "/jobs")
-          ? html`
+          ? `
               <hn-pagination
                 type="jobs"
                 page="${page}"

@@ -3,10 +3,8 @@ import { define } from "osagai";
 import styles from "./hn-header.css";
 import Logo from "./logo.png";
 
-const html = String.raw;
-
 function Item({ href, text }) {
-  return html`
+  return `
     <li class="${styles.item}">
       <a class="${styles.link}" href="${href}" aria-label="${text}">${text}</a>
     </li>
@@ -43,7 +41,7 @@ function Header({ query, element }) {
     }
   });
 
-  return () => html`
+  return () => `
     <nav class="${styles.header}">
       <ol class="${styles.links}">
         <li class="${styles.logo}">

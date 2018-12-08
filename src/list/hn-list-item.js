@@ -2,8 +2,6 @@ import { define } from "osagai";
 import { onAttributeChanged } from "osagai/lifecycles";
 import styles from "./hn-list-item.css";
 
-const html = String.raw;
-
 function ListItem({ element, update }) {
   onAttributeChanged(element, () => {
     update();
@@ -19,7 +17,7 @@ function ListItem({ element, update }) {
     const time = element.getAttribute("time");
     const commentsCount = element.getAttribute("comments-count");
 
-    return html`
+    return `
       <article class="${styles.article}">
         <span class="${styles.index}">${index}</span>
 
@@ -32,7 +30,7 @@ function ListItem({ element, update }) {
             ${points ? `${points} points` : null} ${user ? ` by ` : null}
             ${
               user
-                ? html`
+                ? `
                     <a href="/user/${user}" class="${styles.userLink}">
                       ${user}
                     </a>
