@@ -5,18 +5,26 @@ import styles from "./hn-list.css";
 import "./hn-list-item.js";
 
 function List({ element, update }) {
-  onAttributeChanged(element, ({ name, current }) => {
+  let state = "idle";
+
+  onAttributeChanged(element, () => {
+    if (state === "loading") {
+      return;
+    }
+
     const query = {
       type: element.getAttribute("type"),
       page: element.getAttribute("page")
     };
 
-    query[name] = current;
-    getList(query).then(data => {
-      update((state = {}) => {
-        state.page = +query.page;
-        state.items = data;
-        return state;
+    state = "loading";
+
+    getList(query).then(items => {
+      state = "idle";
+      update((data = {}) => {
+        data.page = +query.page;
+        data.items = items;
+        return data;
       });
     });
   });
