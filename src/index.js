@@ -1,5 +1,4 @@
 import { define } from "osagai";
-import "./header/hn-header.js";
 import "./list/hn-list.js";
 import "./pagination/hn-pagination.js";
 import "./router/hn-router.js";
@@ -30,7 +29,6 @@ function App({ query, update }) {
     const page = extractPage(route);
 
     return `<div>
-      <hn-header></hn-header>
       <hn-router></hn-router>
       ${
         matchPage(route, "/top") || route === "/"

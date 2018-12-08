@@ -84,8 +84,84 @@
     <meta name="msapplication-TileColor" content="#5f4b44" />
     <meta name="msapplication-TileImage" content="images/mstile-144x144.png" />
     <meta name="msapplication-config" content="images/browserconfig.xml" />
+
+    <style>
+      .header-links {
+        display: flex;
+        align-items: center;
+        padding: 0.5em 1em;
+        margin: 0;
+        list-style-type: none;
+        background: #5f4b44;
+      }
+
+      .logo svg {
+        width: 2em;
+      }
+
+      .item__link {
+        display: block;
+        padding: 0.1em 0;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .item {
+        margin-left: 0.7em;
+      }
+    </style>
   </head>
   <body>
+    <nav>
+      <ol class="header-links">
+        <li class="logo">
+          <a
+            href="/"
+            aria-label="HTML logo (Go back to homepage)"
+            title="HTML logo"
+          >
+            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+              <g fill="#F16529">
+                <path
+                  d="M17.4 12.7h1.2V14H20v-4h-1.4v1.3h-1.2V10H16v4h1.4zM22.2 14h1.3v-2.7h1.2V10H21v1.3h1.2zM26.8 12l.9 1.5.9-1.5v2H30v-4h-1.4l-.9 1.4-.9-1.4h-1.4v4h1.4zM34 12.7h-1.9V10h-1.4v4H34zM14 16l2 22 9 2 9-2 2-22H14zm17.5 7H21l.5 2H31l-1 9-5 2-5-2-.8-4H22l.5 2 2.5 1 2.5-1 .5-4h-9l-1-8h14l-.5 3z"
+                />
+              </g>
+              <path
+                d="M25 1C11.7 1 1 11.7 1 25s10.7 24 24 24 24-10.7 24-24S38.3 1 25 1zm0 43C14.5 44 6 35.5 6 25S14.5 6 25 6s19 8.5 19 19-8.5 19-19 19z"
+                fill="#F16529"
+              />
+            </svg>
+          </a>
+        </li>
+
+        <li class="item">
+          <a class="item__link" href="/top" aria-label="top" title="top">top</a>
+        </li>
+
+        <li class="item">
+          <a class="item__link" href="/new" aria-label="new" title="new">new</a>
+        </li>
+
+        <li class="item">
+          <a class="item__link" href="/show" aria-label="show" title="show"
+            >show</a
+          >
+        </li>
+
+        <li class="item">
+          <a class="item__link" href="/ask" aria-label="ask" title="ask">ask</a>
+        </li>
+
+        <li class="item">
+          <a class="item__link" href="/jobs" aria-label="jobs" title="jobs"
+            >jobs</a
+          >
+        </li>
+      </ol>
+    </nav>
+
+    <noscript><h1>Oops! enable JS for better experience :)</h1></noscript>
+
     <script src="custom-elements-es5-adapter.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
