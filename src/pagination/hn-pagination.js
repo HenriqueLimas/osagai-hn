@@ -12,7 +12,7 @@ function Pagination({ element, update }) {
   });
 
   return ({
-    page = 1,
+    page = +element.getAttribute("page"),
     maxPages = +element.getAttribute("max-pages"),
     type = element.getAttribute("type")
   } = {}) => `

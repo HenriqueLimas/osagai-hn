@@ -25,7 +25,7 @@ function App({ query, update }) {
     return route.match(toMatch);
   };
 
-  return ({ route = "/top" } = {}) => {
+  return ({ route = location.pathname } = {}) => {
     const page = extractPage(route);
 
     return `<div>
