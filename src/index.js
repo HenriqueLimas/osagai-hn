@@ -1,18 +1,16 @@
 import { define } from "osagai";
 import "./list/hn-list.js";
 import "./pagination/hn-pagination.js";
-import "./router/hn-router.js";
+import "osagai-simple-router";
 
 import "./styles.css";
 
 function App({ query, update }) {
-  requestAnimationFrame(() => {
-    query("hn-router").then(router => {
-      router.addListener(route => {
-        update((state = {}) => {
-          state.route = route;
-          return state;
-        });
+  query("simple-router").then(router => {
+    router.addListener(route => {
+      update((state = {}) => {
+        state.route = route;
+        return state;
       });
     });
   });
@@ -29,7 +27,7 @@ function App({ query, update }) {
     const page = extractPage(route);
 
     return `<div>
-      <hn-router></hn-router>
+      <simple-router></simple-router>
       ${
         matchPage(route, "/top") || route === "/"
           ? `
