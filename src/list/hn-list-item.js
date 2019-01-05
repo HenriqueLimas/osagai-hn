@@ -1,10 +1,11 @@
 import { define } from "osagai";
 import { onAttributeChanged } from "osagai/lifecycles";
+import { update } from "osagai/dom";
 import styles from "./hn-list-item.css";
 
-function ListItem({ element, update }) {
+function ListItem({ element }) {
   onAttributeChanged(element, () => {
-    update();
+    update(element);
   });
 
   return () => {

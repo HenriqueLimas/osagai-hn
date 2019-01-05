@@ -1,10 +1,11 @@
 import { define } from "osagai";
 import { onAttributeChanged } from "osagai/lifecycles";
+import { update } from "osagai/dom";
 import { getList } from "./api";
 import styles from "./hn-list.css";
 import "./hn-list-item.js";
 
-function List({ element, update }) {
+function List({ element }) {
   let state = "idle";
 
   onAttributeChanged(element, () => {
@@ -21,7 +22,7 @@ function List({ element, update }) {
 
     getList(query).then(items => {
       state = "idle";
-      update((data = {}) => {
+      update(element, (data = {}) => {
         data.page = +query.page;
         data.items = items;
         return data;

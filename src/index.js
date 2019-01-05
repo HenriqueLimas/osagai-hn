@@ -1,14 +1,15 @@
 import { define } from "osagai";
+import { update } from "osagai/dom";
 import "./list/hn-list.js";
 import "./pagination/hn-pagination.js";
 import "osagai-simple-router";
 
 import "./styles.css";
 
-function App({ query, update }) {
+function App({ element, query }) {
   query("simple-router").then(router => {
     router.addListener(route => {
-      update((state = {}) => {
+      update(element, (state = {}) => {
         state.route = route;
         return state;
       });

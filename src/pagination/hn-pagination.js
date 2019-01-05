@@ -1,11 +1,12 @@
 import { define } from "osagai";
 import { onAttributeChanged } from "osagai/lifecycles";
+import { update } from "osagai/dom";
 
 import styles from "./hn-pagination.css";
 
-function Pagination({ element, update }) {
+function Pagination({ element }) {
   onAttributeChanged(element, ({ name, current }) => {
-    update((currentState = {}) => {
+    update(element, (currentState = {}) => {
       currentState[name] = name === "type" ? current : +current;
       return currentState;
     });

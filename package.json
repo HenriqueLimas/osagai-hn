@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.1",
-    "osagai": "^0.0.10",
+    "osagai": "^0.2.1",
     "osagai-simple-router": "^0.1.1"
   },
   "devDependencies": {
